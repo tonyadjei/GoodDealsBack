@@ -2,13 +2,15 @@ package com.antonadjei.eCommerce.models;
 
 import com.antonadjei.eCommerce.enums.Type;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "product")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,5 +29,8 @@ public class Product {
 
     @Column(name = "quantity")
     private Integer quantity;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
 }

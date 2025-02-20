@@ -1,4 +1,4 @@
-package com.antonadjei.eCommerce.dtos;
+package com.antonadjei.eCommerce.dtos.product;
 
 
 import com.antonadjei.eCommerce.enums.Type;
@@ -16,16 +16,18 @@ import java.util.List;
 public class ProductResponseDTO {
     private Long id;
     private String name;
-    private Double price;
-    private Type type;
-    private Integer quantity;
+    private double price;
+    private String type;
+    private String imageUrl;
+    private int quantity;
 
     public static ProductResponseDTO toProductResponseDTO(Product product) {
         return ProductResponseDTO.builder()
                 .id(product.getId())
                 .name(product.getName())
                 .price(product.getPrice())
-                .type(product.getType())
+                .type(product.getType().toString())
+                .imageUrl(product.getImageUrl())
                 .quantity(product.getQuantity())
                 .build();
     }
@@ -38,7 +40,8 @@ public class ProductResponseDTO {
                             .id(product.getId())
                             .name(product.getName())
                             .price(product.getPrice())
-                            .type(product.getType())
+                            .type(product.getType().toString())
+                            .imageUrl(product.getImageUrl())
                             .quantity(product.getQuantity())
                             .build()
             );
