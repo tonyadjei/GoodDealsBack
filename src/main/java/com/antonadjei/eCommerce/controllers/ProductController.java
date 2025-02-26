@@ -8,11 +8,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173", maxAge = 3600)
+
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
@@ -29,6 +30,7 @@ public class ProductController {
         return productService.getProductDetails(productID);
     }
 
+    @Secured({"ADMIN", "SUPER_ADMIN"})
     @PostMapping("")
     public ResponseEntity<List<ProductResponseDTO>> addProduct(@Valid @RequestBody List<ProductRequestDTO> productData) {
         return productService.addProduct(productData);

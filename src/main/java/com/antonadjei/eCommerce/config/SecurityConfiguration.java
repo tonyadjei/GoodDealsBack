@@ -22,7 +22,8 @@ public class SecurityConfiguration {
     private static final String[] AUTH_WHITELIST = {
             "/auth/register",
             "/auth/login",
-            "/products/**"
+            "/products/**",
+            "/logout"
     };
 
     private final JWTAuthFilter jwtAuthFilter;
@@ -39,6 +40,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> {})
                 .authorizeHttpRequests(
                         authorize -> authorize
                                 .requestMatchers(AUTH_WHITELIST)
